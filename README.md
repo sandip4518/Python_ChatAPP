@@ -2,7 +2,7 @@
 
 A smart AI-powered chatbot that understands both **text and images**. It analyzes images, processes text, and generates intelligent responses, making conversations more interactive. Built with **Python**, this chatbot is designed for seamless performance and AI-driven conversations.  
 
-🔗 **Live Demo:** [Python Image Chatbot](https://python-chatapp-2.onrender.com/)  
+🔗 **Live Demo:** [Python Image Chatbot](https://chatez.vercel.app/)  
 
 ---
 
