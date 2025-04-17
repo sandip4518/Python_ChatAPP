@@ -114,7 +114,8 @@ body {
 .file-upload-label svg {
   width: 24px;
   height: 24px;
-  stroke: white; /* Ensure SVG icon color matches button */
+  stroke: white;
+  margin-right: -4px; /* Ensure SVG icon color matches button */
 }
 
 /* Hide the default file input */
@@ -145,7 +146,28 @@ body {
   height: 24px;
   fill: white; /* Ensure SVG icon color matches button */
 }
-
+#export-button {
+  background: #000;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  height: 39px;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+#export-icon {
+  filter: invert(1);
+  margin-right: 4px;
+}
+#export-button:hover {
+  background: #333;
+}
 /* Image Styling */
 .uploaded-image {
   max-width: 100%;
@@ -201,4 +223,44 @@ body {
 
 #cancel-preview:hover {
   background: #ff1a1a;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  display: inline-block;
+  font-style: italic;
+  color: #666;
+}
+
+/* Error Message */
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/*markdown style for code response */
+
+/* Fix long code block overflow */
+.message pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #f1f1f1;
+  padding: 8px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+.message code {
+  background-color: #f4f4f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
 }

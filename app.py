@@ -49,18 +49,20 @@ def chat():
 
     if image_file:
         # Process the uploaded image
-        response = process_image(image_file)
+        response_text = process_image(image_file)
     else:
         # Generate response with conversation context
-        response = generate_response(user_message, messages)
+        response_text = generate_response(user_message, messages)
     
     # Store bot response for display
-    messages.append({"role": "bot", "content": response})
+    messages.append({"role": "bot", "content": response_text})
     
     # Save updated conversation to session
     session['messages'] = messages
     
-    return jsonify({"response": response})
+    response = jsonify({"response": response_text})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 def generate_response(user_message, messages):
     try:
@@ -110,4 +112,3 @@ def process_image(image_file):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
