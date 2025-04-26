@@ -252,7 +252,7 @@ const processImage = (imgElement) => {
     img.crossOrigin = "Anonymous";
     img.onload = () => {
       const aspectRatio = img.width / img.height;
-      let imgWidth = Math.min(150, img.width);
+      let imgWidth = Math.min(50, img.width);
       let imgHeight = imgWidth / aspectRatio;
       resolve({ img, width: imgWidth, height: imgHeight });
     };
