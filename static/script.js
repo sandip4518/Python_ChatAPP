@@ -136,7 +136,10 @@ document.getElementById("export-button").onclick = async function () {
     try {
       const isUser = message.classList.contains("user");
       const imgElement = message.querySelector("img");
-      let text = message.innerText.trim();
+      let text = message.innerText
+        .replace(/\s+/g, " ")
+        .replace(/[^\x00-\x7F]/g, "")
+        .trim();
 
       pdf.setFont("helvetica", "normal");
       pdf.setFontSize(11);
