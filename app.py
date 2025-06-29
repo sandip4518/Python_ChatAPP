@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template, session
-from google.generativeai import genai
+import google.generativeai as genai
 from google.genai import types
 from PIL import Image
 import requests
