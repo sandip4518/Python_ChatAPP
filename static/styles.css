@@ -1,7 +1,8 @@
 /* General Styles */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f7f7;
+  font-family: "Inter", sans-serif;
+  background-color: #000;
+  color: #fff;
   margin: 0;
   padding: 0;
   display: flex;
@@ -10,113 +11,135 @@ body {
   height: 100vh;
 }
 
-/* Chat Container */
+/* Chat Container - Glassmorphism */
 #chat-container {
-  width: 100%;
-  max-width: 800px;
-  height: 90vh;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1000px;
+  height: 85vh;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
-/* Header */
+/* Chat Header */
 #chat-header {
-  background: linear-gradient(135deg, #333, #000);
-  color: white;
-  padding: 16px;
+  background: #111;
+  padding: 24px;
   text-align: center;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid #222;
+  letter-spacing: 0.5px;
+  color: #fff;
 }
 
 /* Messages Area */
 #messages {
   flex: 1;
-  padding: 16px;
+  padding: 30px;
   overflow-y: auto;
-  background: #fafafa;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
+  background: #000;
 }
 
 /* Message Bubbles */
 .message {
-  max-width: 70%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 500;
+  max-width: 80%;
+  padding: 16px 24px;
+  border-radius: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  position: relative;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
 .user {
-  background: #000;
-  color: white;
+  background: #fff;
+  color: #000;
   align-self: flex-end;
   border-bottom-right-radius: 4px;
 }
 
 .bot {
-  background: #e5e5ea;
-  color: #333;
+  background: #1a1a1a;
+  color: #e0e0e0;
   align-self: flex-start;
   border-bottom-left-radius: 4px;
+  border: 1px solid #333;
 }
 
-/* Input Area */
+/* Input Area - Floating */
 #input-area {
-  position: relative; /* Needed for absolute positioning of the preview */
+  position: relative;
   display: flex;
-  gap: 8px;
-  padding: 16px;
-  background: white;
-  border-top: 1px solid #e5e5ea;
+  gap: 16px;
+  padding: 24px 30px;
+  background: #111;
   align-items: center;
+  border-top: 1px solid #222;
+  margin-bottom: 0; /* Attach to bottom */
 }
 
 /* Input Field */
 #user-input {
   flex: 1;
-  padding: 12px;
-  border: 1px solid #e5e5ea;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 16px 24px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 15px;
   outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+#user-input::placeholder {
+  color: #666;
 }
 
 #user-input:focus {
-  border-color: #000;
+  border-color: #666;
 }
 
-/* File Upload Button */
-.file-upload-label {
-  background: #000;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
+/* Buttons (Upload, Send, Export) */
+.file-upload-label, #send-button, #export-button {
+  background: #3B82F6;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  gap: 8px;
-  transition: background 0.3s ease;
+  font-weight: 700;
+  transition: transform 0.2s, background 0.2s;
+  width: auto; /* Reset width */
+  height: auto; /* Reset height */
 }
 
-.file-upload-label:hover {
-  background: #333;
+.file-upload-label {
+    gap: 8px; /* Space between icon and text */
 }
 
-.file-upload-label svg {
-  width: 24px;
-  height: 24px;
-  stroke: white;
-  margin-right: -4px; /* Ensure SVG icon color matches button */
+.file-upload-label:hover, #send-button:hover, #export-button:hover {
+  background: #2563EB;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Specific styling for Send button (Icon only) */
+#send-button {
+    padding: 12px 16px;
 }
 
 /* Hide the default file input */
@@ -124,144 +147,288 @@ body {
   display: none;
 }
 
-/* Send Button */
-#send-button {
-  background: #000;
-  color: white;
-  border: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-}
 
-#send-button:hover {
-  background: #333;
+/* Icons */
+.file-upload-label svg, #send-button svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+  fill: none;
 }
 
 #send-button svg {
-  width: 24px;
-  height: 24px;
-  fill: white; /* Ensure SVG icon color matches button */
+    fill: #fff;
+    stroke: none;
 }
+
 #export-button {
-  background: #000;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  height: 39px;
-  border: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
+    background: #3B82F6;
+    color: #fff;
+    border: none;
 }
+
 #export-icon {
-  filter: invert(1);
-  margin-right: 4px;
+    filter: invert(1);
+    margin-right: 8px;
 }
+
 #export-button:hover {
-  background: #333;
-}
-/* Image Styling */
-.uploaded-image {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-top: 8px;
+    background: #2563EB;
 }
 
-/* Adjust message bubbles for images */
-.message.user img {
-  display: block;
-  max-width: 200px;
-  height: auto;
-  border-radius: 8px;
-}
-
-/* Image Preview Container */
-#image-preview-container {
-  position: absolute; /* Position it absolutely */
-  bottom: 70px; /* Adjust this value to position it above the Upload button */
-  left: 16px; /* Align with the left edge of the input area */
-  text-align: center;
-  z-index: 1; /* Ensure it appears above other elements */
-  display: none; /* Hidden by default */
+/* File Upload specific adjustment - Show text again */
+.file-upload-label span {
+    display: block; 
 }
 
 /* Image Preview */
-#image-preview {
-  max-width: 100px; /* Small size for preview */
-  max-height: 100px;
-  border-radius: 8px;
-  border: 1px solid #e5e5ea;
+#image-preview-container {
+  position: absolute;
+  bottom: 110px; /* Adjust to sit above input */
+  left: 35px;
+  background: transparent;
+  padding: 0;
+  border: none;
+  z-index: 10;
+  display: none;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
-/* Cancel Button */
+#image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #333;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 #cancel-preview {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #ff4d4d;
+  top: -8px;
+  right: -8px;
+  background: #FF4D4D; /* Red color from screenshot */
   color: white;
   border: none;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  padding: 0;
+  line-height: 1;
 }
 
 #cancel-preview:hover {
-  background: #ff1a1a;
+  background: #ff3333;
+  transform: scale(1.1);
 }
 
-/* Typing Indicator */
-.typing-indicator {
-  background-color: #f0f0f0;
-  padding: 8px 12px;
+/* Hide Scrollbar */
+#messages::-webkit-scrollbar {
+  width: 6px;
+}
+#messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+#messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* Image handling */
+.uploaded-image, .message.user img {
   border-radius: 12px;
-  display: inline-block;
-  font-style: italic;
-  color: #666;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Error Message */
-.error {
-  color: #721c24;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-/*markdown style for code response */
-
-/* Fix long code block overflow */
+/* Code Blocks */
 .message pre {
-  white-space: pre-wrap;
-  word-break: break-word;
-  background: #f1f1f1;
-  padding: 8px;
-  border-radius: 5px;
-  font-family: monospace;
-  font-size: 13px;
-  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .message code {
-  background-color: #f4f4f4;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-family: monospace;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Landing Page Styles */
+.landing-body {
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: auto;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #fff, #888);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-cta {
+  background: #fff;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -2px;
+  color: #fff;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #4285F4, #9B72CB, #D96570);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 22px;
+  color: #a0a0a0;
+  max-width: 660px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.cta-button {
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-button.primary {
+  background: #fff;
+  color: #000;
+}
+
+.cta-button.primary:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255,255,255,0.15);
+}
+
+.cta-button.secondary {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 60px auto 100px;
+  padding: 0 24px;
+}
+
+.feature-card {
+  background: #0a0a0a;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #1a1a1a;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: #333;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  background: #111;
+}
+
+.icon-box {
+  font-size: 32px;
+  margin-bottom: 24px;
+  display: inline-block;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.feature-card p {
+    color: #888;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.footer {
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid #111;
+  color: #444;
+  font-size: 14px;
 }

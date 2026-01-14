@@ -23,10 +23,14 @@ genai.configure(api_key=GOOGLE_API_KEY)
 MODEL_ID = "gemini-2.5-flash"  # You can change this to another model if needed
 
 @app.route('/')
-def index():
+def landing():
+    return render_template('landing.html')
+
+@app.route('/app')
+def chat_app():
     if 'messages' not in session:
         session['messages'] = []
-    return render_template('index.html')
+    return render_template('chat.html')
 
 @app.route('/get_conversation', methods=['GET'])
 def get_conversation():
