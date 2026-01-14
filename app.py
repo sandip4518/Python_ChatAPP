@@ -21,7 +21,7 @@ if not GOOGLE_API_KEY:
 client = genai.Client(api_key=GOOGLE_API_KEY)
 
 # Choose the model
-MODEL_ID = "gemini-2.0-flash"  # You can change this to another model if needed
+MODEL_ID = "gemini-2.5-flash"  # You can change this to another model if needed
 
 @app.route('/')
 def index():
@@ -41,6 +41,7 @@ def chat():
     messages = session.get('messages', [])
     
     user_message = request.form.get('message', '')
+    print(f"Received user message: {user_message}")
     image_file = request.files.get('image_file')
 
     # Store user message for display
