@@ -47,7 +47,7 @@ def chat():
         messages.append({"role": "user", "content": user_message})
 
     if image_file:
-        response_text = process_image(image_file)
+        response_text = process_image(image_file, user_message)
     else:
         response_text = generate_response(user_message, messages)
 
@@ -74,15 +74,21 @@ def generate_response(user_message, messages):
         print(f"Error generating response: {e}")
         return "Network Error : Please connect to Internet!!!"
 
-def process_image(image_file):
+def process_image(image_file, user_message):
     try:
-        image = Image.open(image_file)
+        # Read the file data
+        image_data = image_file.read()
+        mime_type = image_file.content_type or "image/jpeg"
+        
+        # Use user message if provided, otherwise default prompt
+        prompt_text = user_message if user_message else "Describe the content of this image."
+
         model = genai.GenerativeModel(MODEL_ID)
 
         response = model.generate_content(
             contents=[
-                {"mime_type": "image/png", "data": image_file.read()},
-                {"text": "Describe the content of this image."}
+                {"mime_type": mime_type, "data": image_data},
+                {"text": prompt_text}
             ]
         )
         return response.text
